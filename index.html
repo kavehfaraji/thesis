@@ -20,10 +20,11 @@
         <h2>Customer churn analysis with data mining approach based on ensemble learning</h2>
         <div class="post-info">Kaveh Faraji | August 18, 2023</div>
         <div class="post-content">
+            <h3>Overall Summary:</h3>
             <p> Based on the literature of customer churn research, it can be understood that the issue of predicting
                 customer churn is vital for telecommunications companies. Predicting customer churn enables
                 decision-makers to identify potential churners more quickly and make better decisions about them using
-                appropriate strategies. Therefore, in this study, an intelligent model based on collective learning is
+                appropriate strategies. Therefore, in this study, an intelligent model based on ensemble learning is
                 proposed for predicting customer churn in the telecommunications industry. The research results
                 demonstrate that the proposed model is competitive with the best predictive models in terms of customer
                 churn prediction. If a decision-maker needs to determine which customers are likely to churn or not, the
@@ -36,8 +37,53 @@
                 Moreover, to address the issue of imbalance dataset, a performance evaluation index is suggested for
                 classification, which considers the accuracy of classification in all classes. This index assists the
                 optimization algorithm in selecting a set of classifiers capable of correctly classifying the available
-                samples in all classes.
+                samples in all classes.To create diversity in classifiers and divide the training data, an incremental
+                clustering method is utilized.</p>
 
+            <p>This method causes the training set to be divided into diverse and dissimilar clusters. The
+                incremental
+                property of this clustering method allows the proposed model to examine all feature spaces. Firstly, the
+                training set is divided into different clusters through clustering. Then, the identical clusters and
+                clusters consisting of samples from a single class (atomic clusters) are removed. In the next step, five
+                classifiers, namely Decision Tree (DT), Support Vector Machine (SVM), Artificial Neural Network (ANN),
+                k-Nearest Neighbors (KNN), and Naive Bayes (NB), are trained on the remaining clusters. Thus, a set of
+                diverse base classifiers is obtained. Subsequently, using the NSGA-II optimization algorithm while
+                considering two objectives, diversity and accuracy, a set of classifiers will be selected from the
+                trained classifiers. These selected classifiers will have the highest level of diversity while being
+                capable of accurately classifying the data. The novelty of this research lies in the utilization of new
+                techniques such as collective learning and evolutionary computation to enhance the prediction accuracy
+                in customer churn for the telecommunications industry. Additionally, the diversity evaluation index
+                proposed in this research differs from the existing indices in the literature in terms of computational
+                aspects. Previous indices measure the diversity of two classifiers based on their classification
+                accuracy and error. However, the proposed index in this research evaluates diversity solely based on the
+                difference between the predicted classes by the classifiers.
+            </p>
+            <h3>Overall Research Objectives:</h3>
+            <p>main objective of this research is to propose an efficient and effective method for predicting
+                customer
+                churn using data mining, machine learning, and artificial intelligence techniques, particularly
+                evolutionary
+                algorithms, to improve the learning process and increase accuracy. The following specific objectives are
+                considered to achieve the main research goal:<br><br>
+                <li>Proposing a classification model for predicting customer churn.</li><br>
+                <li> Minimizing the classification error of churned customers.</li><br>
+                <li>Comparing the proposed algorithm with other classification approaches for churn prediction.</li><br>
+                <li>Introducing a collective learning method for classifying balanced and imbalanced data.</li><br>
+                <li>Presenting a novel diversity measurement index for ensemble models.</li><br>
+                <li>Providing a new index for measuring classification accuracy in imbalanced data.</li>
+            </p>
+
+            <h3>Outline of the Dataset:</h3>
+            <p>
+                The research utilizes a dataset extracted randomly from the database of an Iranian telecommunications
+                company over a 12-month period. The dataset consists of a total of 3,150 records, each belonging to a
+                customer, along with 12 feature columns. The dataset features include incomplete calls, number of
+                complaints, duration of customer-operator communication, charged credit amount, duration of calls made,
+                number of received calls, number of sent text messages, number of different contacted numbers, customer
+                age, type of service plan used by the customer, and customer status.
+                Furthermore, the dataset exhibits an imbalance with a churned customer ratio of 15.7%. The dataset is
+                accessible in the <a href="https://archive.ics.uci.edu/dataset/563/iranian+churn+dataset">UCI</a>
+                database.
             </p>
         </div>
     </div>

@@ -22,13 +22,17 @@ h1 {
     font-size: 40px;
 }
 
+h3 {
+    font-size: 30px;
+}
+
 .post h2 {
     font-family: 'Times New Roman', Times, serif;
     font-size: 35px;
 }
 
 nav {
-    background: rgba(187, 252, 174, 0.801);
+    background: rgba(127, 167, 253, 0.801);
     padding: 20px;
 }
 
@@ -66,6 +70,11 @@ body {
 }
 
 .post p {
+    font-size: 20px;
+    text-align: justify;
+}
+
+.post li {
     font-size: 20px;
     text-align: justify;
 }
