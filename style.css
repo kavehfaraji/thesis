@@ -17,6 +17,16 @@ body {
     font-size: 24px;
 }
 
+h1 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+}
+
+.post h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 35px;
+}
+
 nav {
     background: rgba(187, 252, 174, 0.801);
     padding: 20px;
