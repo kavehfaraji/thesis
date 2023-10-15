@@ -26,9 +26,20 @@ h3 {
     font-size: 30px;
 }
 
+h4 {
+    font-size: 20px;
+}
+
 .post h2 {
     font-family: 'Times New Roman', Times, serif;
     font-size: 35px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
 }
 
 nav {
