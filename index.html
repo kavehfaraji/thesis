@@ -51,7 +51,7 @@
                 considering two objectives, diversity and accuracy, a set of classifiers will be selected from the
                 trained classifiers. These selected classifiers will have the highest level of diversity while being
                 capable of accurately classifying the data. The novelty of this research lies in the utilization of new
-                techniques such as collective learning and evolutionary computation to enhance the prediction accuracy
+                techniques such as ensemble learning and evolutionary computation to enhance the prediction accuracy
                 in customer churn for the telecommunications industry. Additionally, the diversity evaluation index
                 proposed in this research differs from the existing indices in the literature in terms of computational
                 aspects. Previous indices measure the diversity of two classifiers based on their classification
@@ -68,7 +68,7 @@
                 <li>Proposing a classification model for predicting customer churn.</li><br>
                 <li> Minimizing the classification error of churned customers.</li><br>
                 <li>Comparing the proposed algorithm with other classification approaches for churn prediction.</li><br>
-                <li>Introducing a collective learning method for classifying balanced and imbalanced data.</li><br>
+                <li>Introducing a ensemble learning method for classifying balanced and imbalanced data.</li><br>
                 <li>Presenting a novel diversity measurement index for ensemble models.</li><br>
                 <li>Providing a new index for measuring classification accuracy in imbalanced data.</li>
             </p>
@@ -105,7 +105,7 @@
                 method, using the II-NSGA algorithm and considering both diversity and accuracy metrics, a set of
                 ensemble classifiers is created on the Pareto-optimal frontier.
             </p>
-            <h3>The proposed diversity index.:</h3>
+            <h3>The proposed diversity index:</h3>
             <p>
                 When we talk about the difference between two objects, we are essentially looking for characteristics or
                 features that, although both objects possess them, differ in their type or value. For example, the
@@ -161,7 +161,285 @@
                 (f(x)) is used to measure the difference between the two
                 classifiers, and the value of this function is calculated by the following equation:
             </p>
+            <div class="center">
+                <img src="9.jpg" alt="C1 and C2 classifiers predictions">
+            </div>
+            <p>
+                The values of this function can be stored in a matrix as shown below, where rows with a value of 1
+                indicate the samples for which the predictions of the two classifiers differ in their assigned class,
+                and zero values indicate similarity in the predictions of the two classifiers for that sample.
+            </p>
+            <div class="center">
+                <img src="10.jpg" alt="C1 and C2 classifiers predictions">
+            </div>
+            <p>Now, if we represent the number of samples in the dataset as N, the difference between the two
+                classifiers can be calculated using the following equation:
+            </p>
+            <div class="center">
+                <img src="11.jpg" alt="Picture">
+            </div>
+            <p>
+                where "n" is equal to the index of the last sample in the dataset, the diversity for
+                the two classifiers in this example would be 4/7 = 0.572. Now, let's consider a ensemble model
+                consisting of 5 different classifiers.
+            </p>
+            <div class="center">
+                <img src="12.jpg" alt="Picture">
+            </div>
+            <p>
+                In this case, we need to apply the comparative function f(x) a total of L(L-1)/2 times, where
+                L is the number of classifiers in the ensemble model. In this example, with five classifiers, we will
+                perform ten iterations, comparing each classifier with the other classifiers. As a result, we will
+                obtain ten comparison matrices, each representing the differences between two
+                classifiers
+            </p>
+            <div class="center">
+                <img src="13.jpg" alt="Picture">
+            </div>
+            <p>
+                which the value of "Div" for each one is:
+            </p>
+            <div class="center">
+                <img src="14.jpg" alt="Picture">
+            </div>
+            <p>
+                When the value of the "Div" function is equal to 1, it indicates that the corresponding two classifiers
+                are completely different from each other. And when the value is equal to 0, it indicates complete
+                similarity
+                between the two classifiers. Now, to calculate the overall diversity in a ensemble model, we take the
+                average of the "Div" values.
+            </p>
+            <div class="center">
+                <img src="15.jpg" alt="Picture">
+            </div>
+            <p>
+                In that case, for the given example, the diversity index value would be 0.7285. In the example,
+                classifiers C2 and C5 are similar to each other. Therefore, if classifier C5 is removed from the
+                ensemble model, the diversity value would increase. In this scenario, we would have:
+            </p>
+            <div class="center">
+                <img src="16.jpg" alt="Picture">
+            </div>
+            <p>So the value of "Div" would be:</p>
+            <div class="center">
+                <img src="17.jpg" alt="Picture">
+            </div>
+            <p>
+                This diversity index is used to calculate diversity in a ensemble model. In previous indices, there was
+                a mutual relationship between classifier accuracy and diversity. However, with the introduction of the
+                new diversity index, this relationship is limited, and the diversity of individual classifiers is
+                calculated separately from their accuracy. This leads to a reverse impact on the ensemble classifier
+                accuracy when diversity increases. Therefore, in such problems where improving one objective leads to
+                deviation in another, there is no single optimal solution that can simultaneously optimize both
+                objectives, and in fact, there exists a set of optimal solutions.
+            </p>
+            <p>
+                In this study, the NSGA (Non-dominated Sorting Genetic Algorithm) is used to find an optimal combination
+                of classifiers that can outperform other algorithms in terms of both diversity and accuracy. Initially,
+                a search space is created consisting of a number of classifiers trained by clustering. Then, the
+                optimization algorithm selects a combination of members from this search space to form a ensemble model
+                that maximizes diversity and accuracy. In general, the proposed method consists of two stages:
+                generating the search space and forming optimal ensemble models. The detailed steps of this method are
+                described further in the following sections.
+            </p>
+            <h3>Generation of search space in MOEEC model:</h3>
+            <h4>1. First step, feature selection:</h4>
+            <p>
+                Not all features in a dataset may have an impact on predicting the class of that dataset. Therefore,
+                identifying important features and removing less important ones can facilitate the classification
+                process. For this reason, in the proposed model, we initially select a subset of features that can
+                maximize the overall classification accuracy. We reduce the dimensionality of the input feature space
+                and eliminate irrelevant features.<br>
 
+                To achieve this, the NCA (Neighborhood Component Analysis) method is implemented to calculate the
+                weights of the features on the dataset. Then, features with weights lower than a relative loss threshold
+                are removed from the dataset. The figure below illustrates the results of feature weighting and
+                selection using the NCA algorithm on the investigated dataset.
+            </p>
+            <div class="center">
+                <img src="18.jpg" alt="Picture">
+            </div>
+            <h4>2. Second step, dividing the dataset into training and testing sets:</h4>
+            <h4>3. Third step, clustering the training dataset:</h4>
+            <p>
+                After dimensionality reduction, the training dataset undergoes a repetitive clustering process to create
+                subsets within a clustering framework. In the proposed method, a clustering technique is used to create
+                random subsets. The clustering method employed in this research is K-means clustering, with the
+                difference that the training dataset is clustered multiple times with varying numbers of clusters. All
+                resulting clusters in each iteration are stored as samples of the training set.<br>
+
+                In this approach, the number of clusters in K-means is initially set to one in the first iteration,
+                effectively creating a single cluster that is equivalent to the dataset itself. In the second iteration,
+                the number of clusters, K, is set to two, leading to the division of the dataset into two clusters. This
+                process continues, and in each iteration, the dataset is divided into an increased number of clusters.
+                This repetition continues for a specified number of iterations.<br>
+                As a result, the total number of clusters created and stored in the storage space after n iteration in
+                the clustering
+                process will be n(n+1)/2. The figure below illustrates the clustering
+                process,
+                the number of clusters created at each stage, and the total number of clusters after four iterations.
+            </p>
+            <div class="center">
+                <img src="19.jpg" alt="Picture">
+            </div>
+            <div class="center">
+                <img src="20.jpg" alt="Picture">
+            </div>
+            <p>
+                Clustering in this manner ensures that all regions of the feature space are examined. However, a
+                potential issue with this approach is that some clusters may become identical or effectively repetitive
+                in different stages. Therefore, it is necessary to employ an operator to remove redundant clusters.
+                Additionally, due to the imbalanced nature of the data, some clusters after clustering may consist
+                entirely of samples belonging to a single class. These clusters are referred to as atomic clusters.
+                Training classifiers on these clusters alone would be futile because they only contain samples from a
+                single class, and learning from a single class lacks the necessary credibility. Therefore, these types
+                of clusters are identified and removed from the cluster set. The remaining clusters are then used to
+                train the base classifiers.
+            </p>
+            <div class="center">
+                <img src="21.jpg" alt="Picture">
+            </div>
+            <h4>4. Fourth step, creating a set of base classifiers:</h4>
+            <p>
+                After discarding atomic clusters and removing redundant clusters, a total of D clusters remain. The
+                number of base classifiers trained by each of these clusters is N. Therefore, the total number of
+                trained base classifiers will be D multiplied by N (Z=DxN). Due to the differences between the training
+                clusters and the variations between the base classifiers with different structures, diversity among the
+                trained base classifiers is ensured. The presence of diversity in the set of base classifiers indicates
+                the different capabilities of each classifier in predicting test data. Hence, selecting an appropriate
+                combination of these classifiers that increases both diversity and the accuracy of the ensemble model is
+                essential.
+            </p>
+            <div class="center">
+                <img src="22.jpg" alt="Picture">
+            </div>
+            <h4>5. Fifth step, constructing optimal ensemble models:</h4>
+            <h4>NSGA-II:</h4>
+            <h4>1. Chromosome encoding </h4>
+            <div class="center">
+                <img src="23.jpg" alt="Picture">
+            </div>
+            <h4>2. population initialization</h4>
+            <p>
+                The space that encompasses all possible solutions to a problem is called the search space.
+            </p>
+            <h4>3. Fitness function calculation</h4>
+            <p>
+                In order for an algorithm to be able to search within this space, the fitness of each potential solution
+                from the population must be determined. Each chromosome is considered as a point in the search space,
+                and the fitness of each individual depends on how well they can solve the problem. The fitness function
+                represents the quality of each population member corresponding to each chromosome in the population. The
+                fitness function in this study involves two objectives. The proposed algorithm aims to minimize both of
+                these objectives.
+            </p>
+            <div class="center">
+                <img src="24.jpg" alt="Picture">
+            </div>
+            <h4>4. Non-dominated sorting and crowding distance calculation</h4>
+            <p>
+                After calculating the fitness function for the population models based on non-dominated sorting and
+                crowding distance, they are sorted. In non-dominated sorting, individuals in the population are ranked
+                into different fronts. After sorting the individuals in the population, the distance of each individual
+                from its neighboring members in each front is evaluated. Based on this evaluation, individuals with
+                higher crowding distances are selected. In general, when comparing two individuals with different ranks,
+                preference is given to the one with a lower rank. For two individuals with the same rank, preference is
+                given to the one with a higher crowding distance.
+            </p>
+            <h4>5. Selection, crossover, and mutation </h4>
+            <p>
+                In this stage, using the selection, crossover, and mutation operators, a new population is created,
+                consisting of the mutated population and the population resulting from crossover. The fitness function
+                is then calculated for the new individuals. These two populations are merged with the initial
+                population, and sorting is performed on this combined population once again. Next, the top n individuals
+                from the merged population are selected to be carried over to the next generation. This process is
+                repeated until the termination condition is met.
+            </p>
+            <h4>6. Fitness function calculation</h4>
+            <p>
+                In this study we used three different Fitness functions:
+                <li> Accuracy</li>
+                <li> Diversity (which discussed before)</li>
+                <li> Imbalance Accuracy</li>
+            </p>
+            <h4>7. Combining parent and offspring populations</h4>
+            <h4>8. Non-dominated sorting and crowding distance calculation</h4>
+            <h4>9. Repeat from step 3</h4>
+            <p>
+                Next, we are going to discuss the Imbalance Accuracy, but before that, you can see the flowchart of the
+                thesis.
+            </p>
+            <div class="center">
+                <img src="25.jpg" alt="Picture">
+            </div>
+            <h3>The proposed Accuracy measure (Imbalance Accuracy):</h3>
+            <p>
+                Consider the following dataset, which consists of samples X = {X1, X2, ..., X10} and three classes
+                (a, b, c). The class of each sample is indicated in the corresponding column in the row below.
+            </p>
+            <div class="center">
+                <img src="26.jpg" alt="Picture">
+            </div>
+            <p>
+                Now consider classifier C, which predicts the classes of X samples according to the following table:
+            </p>
+            <div class="center">
+                <img src="27.jpg" alt="Picture">
+            </div>
+            <p>
+                Based on this, the accuracy value will be equal to:
+            </p>
+            <div class="center">
+                <img src="28.jpg" alt="Picture">
+            </div>
+            <p>
+                But to calculate the Imbalanced Accuracy measure, we need to create a similar table as the following,
+                where
+                each row corresponds to a class. Then, we will calculate the classifier's prediction accuracy using this
+                table.
+            </p>
+            <div class="center">
+                <img src="29.jpg" alt="Picture">
+            </div>
+            <p>
+                According to the table above, it can be observed that classifier C has correctly predicted all six
+                samples belonging to class "a", but it failed to predict any of the samples from class "c" correctly.
+                However, the Accuracy measure for this classifier calculates an appropriate value of 70%. But the
+                classifier's ability to predict class "c" is very weak, which the Accuracy measure cannot identify. This
+                issue is known as the imbalance problem in classification in the literature.<br>
+
+                If we denote the number of classes in the dataset as Numc, the total number of instances with the true
+                class "ith" as Ri, and the number of instances from class "ith" that have been correctly predicted by
+                classifier C as Ti, then the Imalanced Accuracy measure can be calculated using the following equation:
+            </p>
+            <div class="center">
+                <img src="30.jpg" alt="Picture">
+            </div>
+            <p>
+                Which is essentially the average classification accuracy across all
+                classes or the average sensitivity across all classes. Based on this, the value of this measure for the
+                given example would be:
+            </p>
+            <div class="center">
+                <img src="31.jpg" alt="Picture">
+            </div>
+            <p>
+                Values close to 1 in this measure indicate that the evaluated classifier has a good performance in
+                predicting all classes, while values close to 0 indicate poor performance in most classes. When this
+                measure is equal to 0.5, it means that the evaluated classifier has perfect performance in at least one
+                class, but poor performance in the rest of the classes. In binary classification problems, the value of
+                this measure is equal to the AUC (Area Under the Curve) measure. However, in multi-class problems, these
+                values differ from each other. Nevertheless, both the AUC and Imalanced Accuracy measures have a
+                positive
+                relationship with each other. Moreover, an increase in the value of this measure leads to an increase in
+                the accuracy of the classifier. Based on the previous explanations, two proposed models in this research
+                are implemented using the II-NSGA optimization algorithm and two different objective functions.
+            </p>
+            <div class="center">
+                <img src="32.jpg" alt="Picture">
+            </div>
+            <div class="center">
+                <img src="33.jpg" alt="Picture">
+            </div>
         </div>
     </div>
 
