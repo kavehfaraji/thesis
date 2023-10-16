@@ -18,7 +18,8 @@
 
     <div class="post">
         <h2>Customer churn analysis with data mining approach based on ensemble learning</h2>
-        <div class="post-info">Kaveh Faraji | August 18, 2023</div>
+        <div class="post-info">Author: Kaveh Faraji | August 20, 2020</div>
+        <div class="post-info">Supervisors: Dr. Seyed Mohammad Bagher Jafari; Dr. Shahrokh Asadi</div>
         <div class="post-content">
             <h3>Overall Summary:</h3>
             <p> Based on the literature of customer churn research, it can be understood that the issue of predicting
@@ -314,7 +315,7 @@
                 <img src="22.jpg" alt="Picture">
             </div>
             <h4>5. Fifth step, constructing optimal ensemble models:</h4>
-            <h4>NSGA-II:</h4>
+            <h3>NSGA-II (Non-Dominated Sorting Genetic Algorithm II):</h3>
             <h4>1. Chromosome encoding </h4>
             <div class="center">
                 <img src="23.jpg" alt="Picture">
@@ -440,6 +441,131 @@
             <div class="center">
                 <img src="33.jpg" alt="Picture">
             </div>
+            <h3>Charts and Comparisons:</h3>
+            <P>The figures below depict the individuals in the population across six different generations. Each
+                individual represents an ensemble model consisting of a set of base classifiers randomly selected from
+                the pool of base classifiers. The combination of these base classifiers is determined through majority
+                voting, resulting in an ensemble classifier. The objective of the optimization algorithm in this
+                research is to minimize the values of the objective functions.<br>
+
+                The values of the objective functions are visualized in two dimensions. However, since the objective of
+                the optimization algorithm in this research is minimization, we have designed the objective functions in
+                a way that minimizing the objective function values is equivalent to maximizing the desired function.
+            </P>
+            <div class="center">
+                <img src="34.jpg" alt="Picture">
+            </div>
+            <div class="center">
+                <img src="35.jpg" alt="Picture">
+            </div>
+            <div class="center">
+                <img src="36.jpg" alt="Picture">
+            </div>
+            <div class="center">
+                <img src="37.jpg" alt="Picture">
+            </div>
+            <div class="center">
+                <img src="38.jpg" alt="Picture">
+            </div>
+            <div class="center">
+                <img src="39.jpg" alt="Picture">
+            </div>
+            <p>
+                Different combinations of base classifiers lead to different ensemble models, where the classification
+                accuracy and the diversity among the base classifiers forming each ensemble vary. In this research, we
+                aim to find an ensemble model with the minimum classification error and the highest similarity among the
+                base classifiers. The ensemble models that reside on the Pareto front, in fact, will be the most
+                desirable ensemble models.<br>
+                The figure below shows the ensemble models created in the last generation of the optimization algorithm.
+                As can be seen in this figure, the created ensemble models are located in the best possible range in
+                terms of the two objective functions: classification error and diversity. Based on this, although
+                ensemble model A does not have desirable performance in terms of classification accuracy, the diversity
+                among its base classifiers is close to 50%. On the other hand, ensemble model B has a desirable and
+                close to 97% classification accuracy, and the diversity among its base classifiers is around 38%. In
+                this research, for more accurate identification of churn customers, we have selected an ensemble model
+                with better classification accuracy. Therefore, the MOEEC-1 model is essentially the same as ensemble
+                model B.
+            </p>
+            <div class="center">
+                <img src="40.jpg" alt="Picture">
+            </div>
+            <h4>Comparing the proposed models with benchmark algorithms in MATLAB:</h4>
+            <p>The table below compares the proposed methods with benchmark algorithms in the classification software
+                MATLAB and WEKA. To do this, we first present the average results of calculating the performance metrics
+                in MATLAB in the table below. In this table, for each metric, we have highlighted the values associated
+                with the two models that performed better than the others. The results in this table show that in the
+                Accuracy metric, the MOEEC-1 and MOEEC-2 models performed better than the other models, respectively. In
+                the AUC metric, the MOEEC-2 and MOEEC-1 models were better than the other models, respectively. In the
+                Recall metric, the MOEEC-2 and Gaussian Naive Bayes models performed better than the others. In the
+                Specificity metric, the Coarse KNN and Coarse Gaussian SVM models performed better. In the Precision
+                metric, the MOEEC-1 and Coarse KNN models performed better. In the score-F metric, the MOEEC-1 and
+                MOECC-2 models performed better. In the G-mean metric, the MOEEC-2 and MOEEC-1 models performed better,
+                respectively. The order of the models based on each metric is shown separately below.
+            </p>
+            <div class="center">
+                <img src="41.jpg" alt="Picture">
+            </div>
+            <p>Next, we will display the bar chart corresponding to each evaluation metric.</p>
+            <div class="center">
+                <img src="42.jpg" alt="Picture">
+            </div>
+            <div class="center">
+                <img src="43.jpg" alt="Picture">
+            </div>
+            <div class="center">
+                <img src="44.jpg" alt="Picture">
+            </div>
+            <div class="center">
+                <img src="45.jpg" alt="Picture">
+            </div>
+            <div class="center">
+                <img src="46.jpg" alt="Picture">
+            </div>
+            <div class="center">
+                <img src="47.jpg" alt="Picture">
+            </div>
+            <h4>Comparing the proposed models with ensemble algorithms in WEKA:</h4>
+            <div class="center">
+                <img src="48.jpg" alt="Picture">
+            </div>
+            <h4>Comparison of the proposed models with classical classifiers:</h4>
+            <div class="center">
+                <img src="49.jpg" alt="Picture">
+            </div>
+            <h4>Comparison of the proposed models with other ensemble models:</h4>
+            <div class="center">
+                <img src="50.jpg" alt="Picture">
+            </div>
+            <h3>Conclusions</h3>
+            <p>
+                In this research, two multi-objective evolutionary methods have been proposed for identifying churn
+                customers. These methods generate a set of optimal ensemble models as a Pareto frontier. In the proposed
+                method, the diversity objective function measures the diversity among classifiers based on their
+                predictions of the evaluation dataset's classes. The proposed method creates different trained models by
+                clustering the data and training base classifiers on each cluster. These base classifiers have different
+                capabilities for identifying the test dataset's class, ensuring diversity among them. However, due to
+                the diversity among these base classifiers, it is challenging to select an appropriate combination of
+                them that can accurately predict the class of test samples by voting. Therefore, in this research, the
+                proposed model uses multi-objective optimization methods to create different combinations of base
+                classifiers at the Pareto frontier.
+            </p>
+            <p>
+                The proposed models in this study can be utilized not only in the telecommunications industry but also
+                in other industries to achieve reliable identification of churn customers. Some efforts towards
+                improving the methods in this research include:</p>
+            <li>Clustering: In this model, the number of clusters and the number of clustering iterations are
+                important factors. Intelligent methods can be employed to determine the optimal number of
+                iterations, reducing computational complexity in the model.
+            </li>
+            <br>
+            <li>
+                Optimization Algorithms: In this study, the Non-Dominated Sorting Genetic Algorithm II (NSGA-II) was
+                used for multi-objective optimization. Other multi-objective optimization algorithms can be
+                experimented with to further enhance the model's performance.
+            </li>
+            <p>These efforts aim to enhance the efficiency and effectiveness of the proposed models, making them
+                applicable in various industries for reliable churn customer identification.
+            </p>
         </div>
     </div>
 
